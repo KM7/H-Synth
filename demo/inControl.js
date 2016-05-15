@@ -31,10 +31,8 @@ this.controlValues=Array(8);
 this.controlMapper=[1,0,0,2,0];
 
 this.update_control=function(){
-if (mouseIsPressed){
 this.controlValues[this.controlMapper[0]]=map(mouseX,0,width,0.0,1);
 this.controlValues[this.controlMapper[1]]=map(mouseY,0,height,0,1);
-}
 this.controlValues[this.controlMapper[2]]=map(rotationX,-180,180,0,1);
 this.controlValues[this.controlMapper[3]]=map(rotationY,-180,180,0,1);
 this.controlValues[this.controlMapper[4]]=map(rotationZ,-180,180,0,1);
