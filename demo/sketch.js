@@ -24,5 +24,10 @@ function draw() {
   
 }
 
+function mousePressed(){
+  soundEngine.attack();
+}
 
-
+function mouseReleased(){
+  soundEngine.release();
+}

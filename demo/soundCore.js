@@ -28,6 +28,10 @@ this.fft = new p5.FFT();
 this.osc.start();
 this.noteScale = new Scaler(saw_shape);
 this.control;
+this.env = new p5.Env();
+//TODO
+this.env.setADSR(0.001, 0.3, 0.4, 0.5);
+this.env.setRange(1, 0);
 
 
 this.updateControl=function(control){
@@ -51,9 +55,15 @@ this.ontheRun=function(){
   var noteValue=this.noteScale.scaleinfo[index];
   //println(freq);
   this.osc.freq(noteToFreqency(noteValue));
+  this.osc.amp(this.env);
+}
 
-  var amp = map(mouseY, 0, height, 1, .01);
-  this.osc.amp(amp);
+this.attack=function(){
+  this.env.triggerAttack();
+}
+
+this.release=function(){
+  this.env.triggerRelease();
 }
 
 
