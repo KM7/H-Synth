@@ -27,19 +27,32 @@ this.osc.amp(.5);
 this.fft = new p5.FFT();
 this.osc.start();
 this.noteScale = new Scaler(saw_shape);
+this.control;
 
 
 this.update=function(control){
-  
+  this.control=control;
+}
+
+this.display=function(){
+    var waveform = this.fft.waveform();  // analyze the waveform
+  beginShape();
+  strokeWeight(5);
+  for (var i = 0; i < waveform.length; i++){
+    var x = map(i, 0, waveform.length, 0, width);
+    var y = map(waveform[i], -1, 1, height, 0);
+    vertex(x, y);
+  }
+  endShape();
 }
 
 this.ontheRun=function(){
-  var noteValue=noteScale.scaleinfo[index];
+  var noteValue=this.noteScale.scaleinfo[22];
   //println(freq);
-  osc.freq(NoteToFreqency(noteValue));
+  this.osc.freq(noteToFreqency(noteValue));
 
   var amp = map(mouseY, 0, height, 1, .01);
-  osc.amp(amp);
+  this.osc.amp(amp);
 }
 
 
