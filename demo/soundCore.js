@@ -23,13 +23,13 @@ this.setShape=function(shape_num){
 
 this.osc = new p5.TriOsc(); // set frequency and type
 this.filter=new p5.BandPass();
-this.setShape();
+this.setShape(saw_shape);
 this.osc.amp(.5);
 this.fft = new p5.FFT();
 this.osc.disconnect();
 this.osc.connect(this.filter);
 this.osc.start();
-this.noteScale = new Scaler(saw_shape);
+this.noteScale = new Scaler(scale_num);
 this.control;
 this.env = new p5.Env();
 //TODO
@@ -55,7 +55,8 @@ this.display=function(){
 
 this.ontheRun=function(){
   //handle the note
-  var index=int(hardMap(this.control.getValue(1),0,1,0,this.noteScale.scaleinfo.length-1));
+  println(this.control.controlBounds[1].x+" "+this.control.controlBounds[1].y);
+  var index=int(hardMap(this.control.getValue(1),0,1,this.control.controlBounds[1].x,this.control.controlBounds[1].y));
   var noteValue=this.noteScale.scaleinfo[index];
   //println(freq);
   var tempNoteFreq=noteToFreqency(noteValue);
@@ -63,12 +64,12 @@ this.ontheRun=function(){
   this.osc.amp(this.env);
   //handle the filter
  // println(this.control.getValue(6));
-  var freq = hardMap(this.control.getValue(6), 0, 1, 20, 15000);
+  var freq = hardMap(this.control.getValue(6), 0, 1, 10, 20000);
  // println(tempNoteFreq);
-  this.filter.freq(tempNoteFreq);
+  this.filter.freq(freq);
   
   // give the filter a narrow band (lower res = wider bandpass)
-  this.filter.res(1);
+  this.filter.res(0);
   
 }
 
@@ -86,7 +87,7 @@ this.release=function(){
 function noteToFreqency(inputValue){
   //make it into midi standard
   inputValue=parseInt(inputValue)-60;
-  println ("hey"+inputValue)
+  //println ("hey"+inputValue)
   return 440*(pow(2,inputValue/12));
 }
 

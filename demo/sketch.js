@@ -7,7 +7,7 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
   //create the main sound Engine
   controlEngine=new inControl();
-  soundEngine=new soundCore(0,0,controlEngine);
+  soundEngine=new soundCore(1,3,controlEngine);
 }
 
 function draw() {

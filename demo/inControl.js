@@ -10,12 +10,21 @@ function inControl(){
  * 4 for delay
  * 5 for sustain
  * 6 for release
- * 7 for reserve
+ * 7 for bandPass
  * 8 for reserve
  **/
  
-this.controlValues=Array(8);
+this.controlValues=Array(9);
+this.controlBounds=Array(9);
 
+this.controlBounds[0]=createVector(0,0);
+this.controlBounds[1]=createVector(10,35);
+this.controlBounds[2]=createVector(0,0);
+this.controlBounds[3]=createVector(0,0);
+this.controlBounds[4]=createVector(0,0);
+this.controlBounds[5]=createVector(0,0);
+this.controlBounds[6]=createVector(10,20000);
+this.controlBounds[7]=createVector(7,0);
 
 /**reserve 0 as not mapping to anything,
  * The index represent the value
