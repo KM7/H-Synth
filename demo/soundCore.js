@@ -1,4 +1,4 @@
-function soundCore(scale_num,saw_shape){
+function soundCore(scale_num,saw_shape,control){
   
 this.setShape=function(shape_num){
   switch(shape_num) {
@@ -35,7 +35,7 @@ this.updateControl=function(control){
 }
 
 this.display=function(){
-    var waveform = this.fft.waveform();  // analyze the waveform
+  var waveform = this.fft.waveform();  // analyze the waveform
   beginShape();
   strokeWeight(5);
   for (var i = 0; i < waveform.length; i++){
@@ -47,7 +47,8 @@ this.display=function(){
 }
 
 this.ontheRun=function(){
-  var noteValue=this.noteScale.scaleinfo[22];
+  var index=int(map(this.control.getValue(1),0,1,0,127));
+  var noteValue=this.noteScale.scaleinfo[index];
   //println(freq);
   this.osc.freq(noteToFreqency(noteValue));
 
