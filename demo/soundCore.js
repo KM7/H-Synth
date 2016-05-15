@@ -22,15 +22,18 @@ this.setShape=function(shape_num){
 }
 
 this.osc = new p5.TriOsc(); // set frequency and type
+this.filter=new p5.BandPass();
 this.setShape();
 this.osc.amp(.5);
 this.fft = new p5.FFT();
+this.osc.disconnect();
+this.osc.connect(this.filter);
 this.osc.start();
 this.noteScale = new Scaler(saw_shape);
 this.control;
 this.env = new p5.Env();
 //TODO
-this.env.setADSR(0.001, 0.3, 0.4, 0.5);
+this.env.setADSR(0.05, 0.6, 0.4, 0.5);
 this.env.setRange(1, 0);
 
 
@@ -51,11 +54,22 @@ this.display=function(){
 }
 
 this.ontheRun=function(){
-  var index=int(map(this.control.getValue(1),0,1,0,127));
+  //handle the note
+  var index=int(hardMap(this.control.getValue(1),0,1,0,this.noteScale.scaleinfo.length-1));
   var noteValue=this.noteScale.scaleinfo[index];
   //println(freq);
-  this.osc.freq(noteToFreqency(noteValue));
+  var tempNoteFreq=noteToFreqency(noteValue);
+  this.osc.freq(tempNoteFreq);
   this.osc.amp(this.env);
+  //handle the filter
+ // println(this.control.getValue(6));
+  var freq = hardMap(this.control.getValue(6), 0, 1, 20, 15000);
+ // println(tempNoteFreq);
+  this.filter.freq(tempNoteFreq);
+  
+  // give the filter a narrow band (lower res = wider bandpass)
+  this.filter.res(1);
+  
 }
 
 this.attack=function(){
@@ -72,6 +86,18 @@ this.release=function(){
 function noteToFreqency(inputValue){
   //make it into midi standard
   inputValue=parseInt(inputValue)-60;
- // println ("hey"+inputValue)
+  println ("hey"+inputValue)
   return 440*(pow(2,inputValue/12));
+}
+
+function hardMap(input,xb,yb,xbb,ybb){
+  var return_value=input;
+  if (input<xb){
+    return_value=xbb;
+  }else if(input>yb){
+    return_value=ybb;
+  }else{
+   return_value=map(input,xb,yb,xbb,ybb);
+  }
+  return return_value;
 }
