@@ -30,7 +30,7 @@ this.noteScale = new Scaler(saw_shape);
 this.control;
 
 
-this.update=function(control){
+this.updateControl=function(control){
   this.control=control;
 }
 
