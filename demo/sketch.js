@@ -5,7 +5,7 @@ var controlEngine;
 function setup() {
   //create the canvas
   createCanvas(windowWidth, windowHeight);
-  //rectMode(CENTER);  // Set rectMode to CENTER
+  rectMode(CENTER);  // Set rectMode to CENTER
   //create the main sound Engine
   controlEngine=new inControl();
   soundEngine=new soundCore(1,3,controlEngine);
@@ -19,9 +19,9 @@ function draw() {
   //throw the control into the soundEngine
   soundEngine.updateControl(controlEngine);
   //start the display
-  soundEngine.display();
-  //start drawing keys
   soundEngine.draw_all_keys();
+  //start drawing keys
+  soundEngine.display();
   //start the mainloop update
   soundEngine.ontheRun();
   

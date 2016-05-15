@@ -60,14 +60,14 @@ var blockWidth=width/blocks;
 var x_location=(key_index-this.control.controlBounds[1].x)*blockWidth;
 //println(x_location);
 fill(244,0,0,100);
-rect(x_location,0,blockWidth,height);
+rect(x_location+blockWidth/2,height/2,blockWidth,height/4);
 }
 
 this.draw_all_keys=function(){
 for (var i=this.control.controlBounds[1].x;i<this.control.controlBounds[1].y;i++){
   this.draw_key(i);
 }
-  
+noFill();
 }
 
 this.ontheRun=function(){
@@ -80,7 +80,7 @@ this.ontheRun=function(){
   this.osc.amp(this.env);
   //handle the filter
  // println(this.control.getValue(6));
-  var freq = hardMap(this.control.getValue(6), 0, 1, 10, 20000);
+  var freq = hardMap(this.control.getValue(6), 0, 1, this.control.controlBounds[6].x, this.control.controlBounds[6].y);
  // println(tempNoteFreq);
   this.filter.freq(freq);
   
