@@ -18,7 +18,7 @@ this.controlValues=Array(9);
 this.controlBounds=Array(9);
 
 this.controlBounds[0]=createVector(0,0);
-this.controlBounds[1]=createVector(10,35);
+this.controlBounds[1]=createVector(10,24);
 this.controlBounds[2]=createVector(0,0);
 this.controlBounds[3]=createVector(0,0);
 this.controlBounds[4]=createVector(0,0);

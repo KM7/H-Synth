@@ -53,9 +53,25 @@ this.display=function(){
   endShape();
 }
 
+this.draw_key=function(key_index){
+var blocks=-(this.control.controlBounds[1].x-this.control.controlBounds[1].y);
+var blockWidth=width/blocks;
+//println(blockWidth);
+var x_location=(key_index-this.control.controlBounds[1].x)*blockWidth;
+//println(x_location);
+fill(244,0,0,100);
+rect(x_location,0,blockWidth,height);
+}
+
+this.draw_all_keys=function(){
+for (var i=this.control.controlBounds[1].x;i<this.control.controlBounds[1].y;i++){
+  this.draw_key(i);
+}
+  
+}
+
 this.ontheRun=function(){
   //handle the note
-  println(this.control.controlBounds[1].x+" "+this.control.controlBounds[1].y);
   var index=int(hardMap(this.control.getValue(1),0,1,this.control.controlBounds[1].x,this.control.controlBounds[1].y));
   var noteValue=this.noteScale.scaleinfo[index];
   //println(freq);
