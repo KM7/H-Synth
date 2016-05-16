@@ -16,6 +16,7 @@ function inControl(){
  
 this.controlValues=Array(9);
 this.controlBounds=Array(9);
+this.controlSwitches=Array(2);
 
 this.controlBounds[0]=createVector(0,0);
 this.controlBounds[1]=createVector(10,24);
@@ -25,6 +26,19 @@ this.controlBounds[4]=createVector(0,0);
 this.controlBounds[5]=createVector(0,0);
 this.controlBounds[6]=createVector(10,20000);
 this.controlBounds[7]=createVector(7,0);
+
+
+
+/**
+ * 1 for saw shape
+ * 2 for scale type
+ * 3 for scale number
+ * 
+ **/
+this.controlSwitches[0]=1;
+this.controlSwitches[1]=1;
+this.controlSwitches[2]=5;
+
 
 /**reserve 0 as not mapping to anything,
  * The index represent the value
@@ -61,5 +75,4 @@ this.getValue=function(value){
   //println(this.controlValues);
   return this.controlValues[value];
 }
-
 }
