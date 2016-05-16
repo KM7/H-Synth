@@ -8,7 +8,7 @@ function setup() {
   rectMode(CENTER);  // Set rectMode to CENTER
   //create the main sound Engine
   controlEngine=new inControl();
-  soundEngine=new soundCore(1,3,controlEngine);
+  soundEngine=new soundCore(1,2,controlEngine);
 }
 
 function draw() {

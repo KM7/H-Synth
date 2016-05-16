@@ -37,6 +37,7 @@ this.env.setADSR(0.05, 0.6, 0.4, 0.5);
 this.env.setRange(1, 0);
 this.amp=new p5.Amplitude();
 this.onHit=-1;
+this.colorbook=new colorBook();
 
 
 this.updateControl=function(control){
@@ -61,7 +62,8 @@ var blockWidth=width/blocks;
 //println(blockWidth);
 var x_location=(key_index-this.control.controlBounds[1].x)*blockWidth;
 //println(x_location);
-fill(244,0,0,100);
+var tempColor=this.colorbook.colors[this.noteScale.scaleinfo[key_index]%12];
+fill(tempColor);
 //println(this.onHit);
 rect(x_location+blockWidth/2,height/2,blockWidth,(height/4)*(1+level*4));
 }
