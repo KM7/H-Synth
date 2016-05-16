@@ -113,7 +113,7 @@ var temp_s=control.controlValues[5];
 var temp_r=control.controlValues[6];
 
 this.setShape(control.controlSwitches[0]);
-this.noteScale = new Scaler(0);
+this.noteScale = new Scaler(control.controlSwitches[1]);
 
 
 this.env.setADSR(temp_a, temp_d, temp_s, temp_r);

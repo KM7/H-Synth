@@ -5,8 +5,7 @@ function GUI(){
 this.options = new LeftRightButtons(width/2,50,width/4,5);
 this.options.setTag("Options");
 this.options.setButtonColor(color(155+random(100),155+random(100),155+random(100)));
-
-this.menu = new MenuButton(9*width/10,width/20,width/20);
+this.menu = new MenuButton(width-(width+height)/20-(width+height)/40,(width+height)/40,(width+height)/20);
 this.menu.setButtonColor(color(155+random(100),155+random(100),155+random(100)));
 
 this.arraysliders=[];
@@ -25,7 +24,7 @@ this.arraysliders[3].setTag("Release");
 
 this.arraybuttons = [];
   for(i = 0; i<1;i++){
-    temp = new SwitchingButton((i+1)*width/4,17*height/20,width/20);
+    temp = new SwitchingButton((i+1)*width/4,17*height/20,(width+height)/25);
     temp.addstate(new loadImage("assets/twitter.png"));
     temp.addstate(new loadImage("assets/android.png"));
     temp.addstate(new loadImage("assets/apple.png"));
@@ -37,7 +36,7 @@ this.arraybuttons = [];
   }
   
     for(i = 1; i<2;i++){
-    temp = new SwitchingButton((i+1)*width/4,17*height/20,width/20);
+    temp = new SwitchingButton((i+1)*width/4,17*height/20,(width+height)/25);
     temp.addstate(new loadImage("assets/twitter.png"));
     temp.addstate(new loadImage("assets/android.png"));
     temp.addstate(new loadImage("assets/apple.png"));
@@ -49,7 +48,7 @@ this.arraybuttons = [];
   }
   
     for(i = 2; i<3;i++){
-    temp = new SwitchingButton((i+1)*width/4,17*height/20,width/20);
+    temp = new SwitchingButton((i+1)*width/4,17*height/20,(width+height)/25);
     temp.addstate(new loadImage("assets/twitter.png"));
     temp.addstate(new loadImage("assets/android.png"));
     temp.addstate(new loadImage("assets/apple.png"));
@@ -93,7 +92,8 @@ this.pressIt=function(control){
   
   for(i = 0; i< this.arraybuttons.length;i++){
     this.arraybuttons[i].onClick(mouseX,mouseY);
-    control.controlSwitches[0]=this.arraybuttons[i].getState();
+    println(this.arraybuttons[i].getState());
+    control.controlSwitches[i]=this.arraybuttons[i].getState();
   }
   }
   return control;

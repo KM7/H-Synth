@@ -3,7 +3,7 @@ function colorBook(){
   
   this.getsomeColor=function(){
     for(var i=0;i<this.colors.length;i++){
-      this.colors[i]=color(255,0+i*24,255-i*24,125);
+      this.colors[i]=color(255,0+i*24,255-i*24,188);
     }
   }
   
