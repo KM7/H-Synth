@@ -1,138 +1,81 @@
-var b;
+var arraysliders;
+var arraybuttons;
+var options;
+var menu;
 
 function setup() {
   
   // Sets the screen to be 720 pixels wide and 400 pixels high
-  cnv  = createCanvas(500, 500);
+  cnv  = createCanvas(windowWidth, windowHeight);
   
-  b = new SwitchingButton(250,250,100);
-  b.addstate(new loadImage("assets/twitter.png"));
-  b.addstate(new loadImage("assets/android.png"));
-  b.addstate(new loadImage("assets/apple.png"));
-  b.setTag("WAVE");
+  arraysliders = [];
+  for(i = 0; i<4;i++){
+    temp= new Slider(3*width/20,(i+1)*3*height/20,7*width/10,height/10,0,127);
+    temp.setTag("SLIDER "+(i+1));
+    temp.setSliderColor(color(155+random(100),155+random(100),155+random(100)));
+    arraysliders.push(temp);
+  }
 
-  c = new Slider(100,100,60,200,0,127);
-  c.setTag("SLIDER");
-
+  arraybuttons = [];
+  for(i = 0; i<3;i++){
+    temp = new SwitchingButton((i+1)*width/4,17*height/20,width/20);
+    temp.addstate(new loadImage("assets/twitter.png"));
+    temp.addstate(new loadImage("assets/android.png"));
+    temp.addstate(new loadImage("assets/apple.png"));
+    temp.setTag("BUTTON "+(i+1));
+    temp.setBackgroundColor(color(155+random(100),155+random(100),155+random(100)));
+    arraybuttons.push(temp);
+  }
+  
+  options = new LeftRightButtons(width/2,50,width/4,5);
+  options.setTag("Options");
+  options.setButtonColor(color(155+random(100),155+random(100),155+random(100)));
+  
+  menu = new MenuButton(9*width/10,width/20,width/20);
+  menu.setButtonColor(color(155+random(100),155+random(100),155+random(100)));
 }
+
 function draw(){
   background(255);
-  b.draw();
-  c.draw();
+  
+  for(i = 0; i< arraysliders.length;i++){
+    arraysliders[i].draw();
+  }
+  
+  for(i = 0; i< arraybuttons.length;i++){
+    arraybuttons[i].draw();
+  }
+
+  options.draw();
+  
+  menu.draw();
 }
 
 function mousePressed(){
-  b.inc(mouseX,mouseY);
-  c.inc(mouseX,mouseY);
+  for(i = 0; i< arraysliders.length;i++){
+    arraysliders[i].onClick(mouseX,mouseY);
+  }
+  
+  for(i = 0; i< arraybuttons.length;i++){
+    arraybuttons[i].onClick(mouseX,mouseY);
+  }
+  
+  options.onClick(mouseX,mouseY);
+  
+  if(menu.isClicked(mouseX,mouseY)){
+    println("CLICKED ON MENU!")
+  }
 }
 
 function mouseDragged(){
-    c.inc(mouseX,mouseY);
+  for(i = 0; i< arraysliders.length;i++){
+    arraysliders[i].onDrag(mouseX,mouseY);
+  }
 }
 
-function Slider(x,y,barw,barh,minr,maxr){
-  this.x= x;
-  this.y= y;
-  this.barw = barw;
-  this.barh = barh;
-  this.minr = minr;
-  this.maxr = maxr;
-  this.count = 1;
-  this.tag = "";
-  
-  this.setTag = function(tag){
-    this.tag = tag;
+function mouseReleased(){
+  for(i = 0; i< arraysliders.length;i++){
+    arraysliders[i].onRelease();
   }
-  
-  //Drawing the button in given location with current state
-  this.draw = function(){
-    
-    //Drawing the base circle
-    ellipseMode(CENTER);
-    noStroke();
-    fill(190,220,255);
-    rect(this.x,this.y,this.barw,this.barh);
-
-    textAlign(CENTER,TOP);
-    textSize(14);
-    fill(0);
-    
-    text(this.tag, this.x+this.barw/2,this.y+11*this.barh/10);
-  }
-  
-  //this function is called when we click on the button 
-  this.inc = function(mposx,mposy){
-    
-    //first we check if the mouse position is on the button
-    if((mposx > this.x && mposx < this.x + this.barw) &&
-    (mposy > this.y && mposy < this.y + this.barh)){
-      
-      num = map(mouseY,this.y,this.y+this.barh,minr,maxr);
-      println(num);
-
-    }
-    
- } 
- 
 }
 
-function SwitchingButton(x,y,radius){
-  this.x= x;
-  this.y= y;
-  this.radius = radius;
-  this.outerradius = 2*sqrt(pow(radius/2,2)+pow(radius/2,2));
-  this.states = 0;
-  this.count = 0;
-  this.tag = "";
-  this.var = [];
-  
-  this.testimg;
-  this.setTag = function(tag){
-    this.tag = tag;
-  }
-  
-  this.addstate = function(state){
-    this.states++;
-    this.var.push(state);
-  }
-  //Drawing the button in given location with current state
-  this.draw = function(){
-
-    ellipseMode(CENTER);
-    noStroke();
-    fill(190,220,255);
-    ellipse(this.x,this.y,this.outerradius,this.outerradius);
-
-    if(this.states>0){
-          this.var[this.count].resize(this.radius,this.radius);
-      image(this.var[this.count], this.x - this.radius/2, this.y - this.radius/2);
-    }
-
-    textAlign(CENTER,TOP);
-    textSize(20);
-    fill(0);
-    
-    text(this.tag, this.x,this.y+3*radius/4);
-    
-  }
-  
-  //this function is called when we click on the button 
-  this.inc = function(mposx,mposy){
-    
-    //first we check if the mouse position is on the button
-    if((mposx > this.x - this.radius/2 && mposx < this.x + this.radius/2) &&
-    (mposy > this.y - this.radius/2 && mposy < this.y + this.radius/2)){
-      
-      //implement the counter to switch states
-      this.count++;
-      
-      //if we have gone through all our states we start again from the first state
-      if(this.count >= this.states){
-        this.count = 0;
-      }
-      
-    }
-    
- } 
- 
-}
