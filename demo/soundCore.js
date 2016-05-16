@@ -65,7 +65,7 @@ var x_location=(key_index-this.control.controlBounds[1].x)*blockWidth;
 var tempColor=this.colorbook.colors[this.noteScale.scaleinfo[key_index]%12];
 fill(tempColor);
 //println(this.onHit);
-rect(x_location+blockWidth/2,height/2,blockWidth,(height/4)*(1+level*4));
+rect(x_location+blockWidth/2,height/2,blockWidth*(1+level),(height/4)*(1+level*4));
 }
 
 this.draw_all_keys=function(){

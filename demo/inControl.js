@@ -37,7 +37,7 @@ this.controlBounds[7]=createVector(7,0);
  * 
  **/
 
-this.controlMapper=[1,6,0,5,0];
+this.controlMapper=[1,3,0,5,0];
 
 this.update_control=function(){
 this.controlValues[this.controlMapper[0]]=hardMap(mouseX,0,width,0,1);
