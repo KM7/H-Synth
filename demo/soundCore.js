@@ -35,6 +35,8 @@ this.env = new p5.Env();
 //TODO
 this.env.setADSR(0.05, 0.6, 0.4, 0.5);
 this.env.setRange(1, 0);
+this.amp=new p5.Amplitude();
+this.onHit=-1;
 
 
 this.updateControl=function(control){
@@ -53,19 +55,26 @@ this.display=function(){
   endShape();
 }
 
-this.draw_key=function(key_index){
+this.draw_key=function(key_index,level){
 var blocks=-(this.control.controlBounds[1].x-this.control.controlBounds[1].y);
 var blockWidth=width/blocks;
 //println(blockWidth);
 var x_location=(key_index-this.control.controlBounds[1].x)*blockWidth;
 //println(x_location);
 fill(244,0,0,100);
-rect(x_location+blockWidth/2,height/2,blockWidth,height/4);
+//println(this.onHit);
+rect(x_location+blockWidth/2,height/2,blockWidth,(height/4)*(1+level*4));
 }
 
 this.draw_all_keys=function(){
+var level = this.amp.getLevel();
+//println(level);
 for (var i=this.control.controlBounds[1].x;i<this.control.controlBounds[1].y;i++){
-  this.draw_key(i);
+  if (i==this.onHit){
+  this.draw_key(i,level);
+  }else{
+  this.draw_key(i,0);
+  }
 }
 noFill();
 }
@@ -74,6 +83,7 @@ this.ontheRun=function(){
   //handle the note
   var index=int(hardMap(this.control.getValue(1),0,1,this.control.controlBounds[1].x,this.control.controlBounds[1].y));
   var noteValue=this.noteScale.scaleinfo[index];
+  this.onHit=index;
   //println(freq);
   var tempNoteFreq=noteToFreqency(noteValue);
   this.osc.freq(tempNoteFreq);
