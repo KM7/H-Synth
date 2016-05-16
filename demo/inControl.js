@@ -18,14 +18,16 @@ this.controlValues=Array(9);
 this.controlBounds=Array(9);
 this.controlSwitches=Array(2);
 
+this.stage=0;
+
 this.controlBounds[0]=createVector(0,0);
 this.controlBounds[1]=createVector(10,24);
-this.controlBounds[2]=createVector(0,0);
-this.controlBounds[3]=createVector(0,0);
-this.controlBounds[4]=createVector(0,0);
-this.controlBounds[5]=createVector(0,0);
+this.controlBounds[2]=createVector(0,1);
+this.controlBounds[3]=createVector(0,1);
+this.controlBounds[4]=createVector(0,1);
+this.controlBounds[5]=createVector(0,1);
 this.controlBounds[6]=createVector(10,20000);
-this.controlBounds[7]=createVector(7,0);
+this.controlBounds[7]=createVector(7,10);
 
 
 
@@ -51,7 +53,7 @@ this.controlSwitches[2]=5;
  * 
  **/
 
-this.controlMapper=[1,3,0,5,0];
+this.controlMapper=[1,0,0,0,0];
 
 this.update_control=function(){
 this.controlValues[this.controlMapper[0]]=hardMap(mouseX,0,width,0,1);

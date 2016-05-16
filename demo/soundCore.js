@@ -1,21 +1,21 @@
-function soundCore(scale_num,saw_shape,control){
+function soundCore(control){
   
 this.setShape=function(shape_num){
   switch(shape_num) {
   case 0: 
-    this.osc = new p5.TriOsc(); // set frequency and type
-    println("Set Triangle Shape Oscillator");  // Does not execute
+    this.osc.setType("square"); // set frequency and type
+    println("Set square Shape Oscillator");  // Does not execute
     break;
   case 1: 
-    this.osc = new p5.SawOsc(); // set frequency and type
+    this.osc.setType("sine"); // set frequency and type
     println("Set Saw Shape Oscillator");  // Does not execute
     break;
   case 2: 
-    this.osc = new p5.SinOsc(); // set frequency and type
+    this.osc.setType("triangle"); // set frequency and type
     println("Set Triangle Shape Oscillator");  // Does not execute
     break;
   case 3: 
-    this.osc = new p5.SqrOsc(); // set frequency and type
+    this.osc.setType("sawtooth"); // set frequency and type
     println("Set Triangle Shape Oscillator");  // Does not execute
     break;
 }
@@ -25,7 +25,7 @@ this.osc = new p5.TriOsc(); // set frequency and type
 this.filter=new p5.BandPass();
 this.control;
 this.setShape(control.controlSwitches[0]);
-this.osc.amp(.5);
+this.osc.amp(0);
 this.fft = new p5.FFT();
 this.osc.disconnect();
 this.osc.connect(this.filter);
@@ -69,6 +69,7 @@ var temp_value=normValue(key_index,this.onHit,1,level);
 
 
 rect(x_location+blockWidth/2,height/2,blockWidth*(1+temp_value),(height/4)*(1+temp_value*4));
+
 }
 
 this.draw_all_keys=function(){
@@ -103,6 +104,21 @@ this.ontheRun=function(){
   // give the filter a narrow band (lower res = wider bandpass)
   this.filter.res(0);
   
+}
+
+this.update_settings=function(){
+var temp_a=control.controlValues[3];
+var temp_d=control.controlValues[4];
+var temp_s=control.controlValues[5];
+var temp_r=control.controlValues[6];
+
+this.setShape(control.controlSwitches[0]);
+this.noteScale = new Scaler(0);
+
+
+this.env.setADSR(temp_a, temp_d, temp_s, temp_r);
+this.onHit=-1;
+
 }
 
 this.attack=function(){
