@@ -23,10 +23,32 @@ this.arraysliders[2].setTag("Sustain");
 this.arraysliders[3].setTag("Release");
 
 
-  
-
 this.arraybuttons = [];
   for(i = 0; i<1;i++){
+    temp = new SwitchingButton((i+1)*width/4,17*height/20,width/20);
+    temp.addstate(new loadImage("assets/twitter.png"));
+    temp.addstate(new loadImage("assets/android.png"));
+    temp.addstate(new loadImage("assets/apple.png"));
+    temp.addstate(new loadImage("assets/apple.png"));
+    
+    temp.setTag("OSC Shape");
+    temp.setBackgroundColor(color(155+random(100),155+random(100),155+random(100)));
+    this.arraybuttons.push(temp);
+  }
+  
+    for(i = 1; i<2;i++){
+    temp = new SwitchingButton((i+1)*width/4,17*height/20,width/20);
+    temp.addstate(new loadImage("assets/twitter.png"));
+    temp.addstate(new loadImage("assets/android.png"));
+    temp.addstate(new loadImage("assets/apple.png"));
+    temp.addstate(new loadImage("assets/apple.png"));
+    
+    temp.setTag("Scale");
+    temp.setBackgroundColor(color(155+random(100),155+random(100),155+random(100)));
+    this.arraybuttons.push(temp);
+  }
+  
+    for(i = 2; i<3;i++){
     temp = new SwitchingButton((i+1)*width/4,17*height/20,width/20);
     temp.addstate(new loadImage("assets/twitter.png"));
     temp.addstate(new loadImage("assets/android.png"));

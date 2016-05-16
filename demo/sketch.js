@@ -16,7 +16,7 @@ function setup() {
 
 function draw() {
   //clear the background
-  background(255);
+  background(55);
   
   if (controlEngine.stage==0){
   push();
@@ -34,6 +34,7 @@ function draw() {
   //start the display
   soundEngine.draw_all_keys();
   //start drawing keys
+  stroke(255);
   soundEngine.display();
   //start the mainloop update
   soundEngine.ontheRun();
