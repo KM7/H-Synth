@@ -20,7 +20,7 @@ function setup() {
 function draw() {
   //clear the background
   background(55);
-  image(images[4], width / 2, height / 2);
+  image(images[4], width / 2, height / 2,width,width);
   if (controlEngine.stage == 0) {
     push();
     translate(0, -windowHeight / 5);
