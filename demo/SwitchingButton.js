@@ -6,7 +6,7 @@ function SwitchingButton(x,y,radius){
   this.states = 0;
   this.count = 0;
   this.tag = "";
-  this.var = [];
+  this.values = [];
   this.scolor = color(190,220,255);
   this.testimg;
   this.setTag = function(tag){
@@ -15,7 +15,7 @@ function SwitchingButton(x,y,radius){
   
   this.addstate = function(state){
     this.states++;
-    this.var.push(state);
+    this.values.push(state);
   }
   //Drawing the button in given location with current state
   this.draw = function(){
@@ -24,8 +24,9 @@ function SwitchingButton(x,y,radius){
     noStroke();
     fill(this.scolor);
     ellipse(this.x,this.y,this.outerradius,this.outerradius);
-      image(images[0],10,10);
-
+    
+    image(images[0],10,10);
+ /**
     if(this.states>0){
           this.var[this.count].resize(this.radius,this.radius);
       image(this.var[this.count], this.x - this.radius/2, this.y - this.radius/2);
@@ -35,6 +36,7 @@ function SwitchingButton(x,y,radius){
     textAlign(CENTER,TOP);
     textSize(this.radius/3);
     fill(0);
+    **/
     
     text(this.tag, this.x,this.y+3*radius/4);
     
