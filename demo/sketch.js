@@ -23,7 +23,7 @@ function draw() {
   //clear the background
   background(55);
   if (controlEngine.stage == 0) {
-  background(255,0+k,255-k,255,140);
+  background(255,0+k,255-k,125,140);
     image(images[4], width / 2, height / 2,width,width);
     image(images[5], width / 2, height / 2+height / 16,width*0.8,width*0.8);
     //text("H-Synth V0.1", width / 2, height / 2 + windowHeight / 10);
@@ -52,10 +52,10 @@ function draw() {
   }else{
    k++;
   }
-  if (k<125){
+  if (k<60){
     decrease=false;
   }
-  if (k>254){
+  if (k>150){
     decrease=true;
   }
 }
