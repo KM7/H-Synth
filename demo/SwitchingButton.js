@@ -28,8 +28,6 @@ function SwitchingButton(x,y,radius){
    // image(images[0],10,10);
  
     if(this.states>0){
-      // this.values[this.count].resize(this.radius,this.radius);
-      //image(this.values[this.count], this.x - this.radius/2, this.y - this.radius/2);
       image(images[this.count],this.x - this.radius/2, this.y - this.radius/2,this.radius,this.radius);
     }
 
