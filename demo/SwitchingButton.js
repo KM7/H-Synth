@@ -25,12 +25,12 @@ function SwitchingButton(x,y,radius){
     fill(this.scolor);
     ellipse(this.x,this.y,this.outerradius,this.outerradius);
     
-    image(images[0],10,10);
+   // image(images[0],10,10);
  
     if(this.states>0){
       this.values[this.count].resize(this.radius,this.radius);
-      image(this.values[this.count], this.x - this.radius/2, this.y - this.radius/2);
-      image(images[0],10,10);
+      //image(this.values[this.count], this.x - this.radius/2, this.y - this.radius/2);
+      image(images[this.count],this.x - this.radius/2, this.y - this.radius/2);
     }
 
     textAlign(CENTER,TOP);
