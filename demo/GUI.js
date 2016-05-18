@@ -62,6 +62,7 @@ this.arraybuttons = [];
 this.draw_stage_one=function(){
 //draw the menu
 rectMode(CORNER);
+
 strokeWeight(1);
 this.menu.draw();
 //draw the left-right buttun
@@ -69,6 +70,9 @@ this.menu.draw();
 }
   
 this.draw_stage_two=function(){
+background(255);
+background(255,44,188,188);
+
 rectMode(CORNER);
   for(i = 0; i< this.arraysliders.length;i++){
     this.arraysliders[i].draw();

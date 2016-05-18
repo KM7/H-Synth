@@ -2,6 +2,7 @@
 var soundEngine;
 var controlEngine;
 var gui;
+var images=Array(4);
 
 function setup() {
   //create the canvas
@@ -72,4 +73,11 @@ function mouseDragged(){
     }else if (controlEngine.stage==2){
         controlEngine=gui.dragIt(controlEngine);
     }
+}
+
+function preload(){
+    images[0]=loadImage("assets/twitter.png");
+    images[1]=loadImage("assets/android.png");
+    images[2]=loadImage("assets/apple.png");
+    images[3]=loadImage("assets/apple.png");
 }
