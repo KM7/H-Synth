@@ -65,6 +65,7 @@ function mousePressed() {
     soundEngine.attack();
   } else if (controlEngine.stage == 2) {
     controlEngine = gui.pressIt(controlEngine);
+    controlEngine = gui.releaseIt(controlEngine);
   }
 }
 

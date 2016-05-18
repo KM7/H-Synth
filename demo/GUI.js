@@ -25,10 +25,10 @@ this.arraysliders[3].setTag("Release");
 this.arraybuttons = [];
   for(i = 0; i<1;i++){
     temp = new SwitchingButton((i+1)*width/4,17*height/20,(width+height)/25);
-    temp.addstate(images[0]);
-    temp.addstate(images[1]);
-    temp.addstate(images[2]);
-    temp.addstate(images[3]);
+    temp.addstate("Saw");
+    temp.addstate("sine");
+    temp.addstate("square");
+    temp.addstate("triangle");
     
     temp.setTag("OSC Shape");
     temp.setBackgroundColor(color(155+random(100),155+random(100),155+random(100)));
@@ -37,10 +37,10 @@ this.arraybuttons = [];
   
     for(i = 1; i<2;i++){
     temp = new SwitchingButton((i+1)*width/4,17*height/20,(width+height)/25);
-    temp.addstate(images[0]);
-    temp.addstate(images[1]);
-    temp.addstate(images[2]);
-    temp.addstate(images[3]);
+    temp.addstate("Saw");
+    temp.addstate("sine");
+    temp.addstate("square");
+    temp.addstate("triangle");
     
     temp.setTag("Scale");
     temp.setBackgroundColor(color(155+random(100),155+random(100),155+random(100)));
@@ -49,10 +49,10 @@ this.arraybuttons = [];
   
     for(i = 2; i<3;i++){
     temp = new SwitchingButton((i+1)*width/4,17*height/20,(width+height)/25);
-    temp.addstate(images[0]);
-    temp.addstate(images[1]);
-    temp.addstate(images[2]);
-    temp.addstate(images[3]);
+    temp.addstate("Saw");
+    temp.addstate("sine");
+    temp.addstate("square");
+    temp.addstate("triangle");
     
     temp.setTag("OSC Shape");
     temp.setBackgroundColor(color(155+random(100),155+random(100),155+random(100)));
