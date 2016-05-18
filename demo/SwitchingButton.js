@@ -28,7 +28,7 @@ function SwitchingButton(x,y,radius){
    // image(images[0],10,10);
  
     if(this.states>0){
-      image(images[this.count],this.x - this.radius/2, this.y - this.radius/2,this.radius,this.radius);
+      image(images[this.count],this.x, this.y,this.radius,this.radius);
     }
 
     textAlign(CENTER,TOP);
