@@ -18,7 +18,7 @@ function setup() {
 function draw() {
   //clear the background
   background(55);
-  
+  image(images[0],0,0);
   if (controlEngine.stage==0){
   push();
   translate(0,-windowHeight/5);
