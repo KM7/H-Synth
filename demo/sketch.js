@@ -3,6 +3,8 @@ var soundEngine;
 var controlEngine;
 var gui;
 var images = Array(4);
+var k=140;
+var decrease=true;
 
 function setup() {
   //create the canvas
@@ -20,16 +22,15 @@ function setup() {
 function draw() {
   //clear the background
   background(55);
-  image(images[4], width / 2, height / 2,width,width);
   if (controlEngine.stage == 0) {
-    push();
-    translate(0, -windowHeight / 5);
-    //soundEngine.display();
-    pop();
-    text("H-Synth V0.1", width / 2, height / 2 + windowHeight / 10);
-    text("Touch anywhere to start", width / 2, height / 2 + windowHeight / 5);
+  background(255,0+k,255-k,255,140);
+    image(images[4], width / 2, height / 2,width,width);
+    image(images[5], width / 2, height / 2+height / 16,width*0.8,width*0.8);
+    //text("H-Synth V0.1", width / 2, height / 2 + windowHeight / 10);
+    //text("Touch anywhere to start", width / 2, height / 2 + windowHeight / 5);
 
   } else if (controlEngine.stage == 1) {
+    image(images[4], width / 2, height / 2,width,width);
     //start the control update
     controlEngine.update_control();
     //throw the control into the soundEngine
@@ -45,7 +46,18 @@ function draw() {
   } else if (controlEngine.stage == 2) {
     this.gui.draw_stage_two();
   }
-
+  
+  if (decrease){
+   k--;
+  }else{
+   k++;
+  }
+  if (k<125){
+    decrease=false;
+  }
+  if (k>254){
+    decrease=true;
+  }
 }
 
 function mousePressed() {
@@ -80,4 +92,5 @@ function preload() {
   images[2] = loadImage("assets/apple.png");
   images[3] = loadImage("assets/apple.png");
   images[4] = loadImage("img/logo.png");
+  images[5] = loadImage("img/press.png");
 }
