@@ -80,11 +80,13 @@ function mouseReleased() {
   }
 }
 
+/**
 function mouseDragged() {
   if (controlEngine.stage == 0) {} else if (controlEngine.stage == 1) {} else if (controlEngine.stage == 2) {
     controlEngine = gui.dragIt(controlEngine);
   }
 }
+**/
 
 function preload() {
   images[0] = loadImage("assets/twitter.png");

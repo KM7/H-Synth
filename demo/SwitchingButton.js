@@ -44,8 +44,8 @@ function SwitchingButton(x,y,radius){
   this.onClick = function(mposx,mposy){
     
     //first we check if the mouse position is on the button
-    if((mposx > this.x - this.radius/2 && mposx < this.x + this.radius/2) &&
-    (mposy > this.y - this.radius/2 && mposy < this.y + this.radius/2)){
+    if((mposx > this.x - this.radius && mposx < this.x + this.radius) &&
+    (mposy > this.y - this.radius && mposy < this.y + this.radius)){
       
       //implement the counter to switch states
       this.count++;
